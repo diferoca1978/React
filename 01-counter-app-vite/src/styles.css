@@ -1,0 +1,20 @@
+html, body {
+  background-color: #212325;
+  color: #faebd7;
+  font-family: Victor Mono;
+  font-size: 1rem;
+  padding: 50px;  
+}
+button {
+  padding: 0.25rem;
+  margin-right: 10px;
+  font-size: inherit;
+  font-family: Victor Mono;
+  background-color: #50b8fd;
+  outline: none;
+  border-radius: 0.5rem;
+  border: solid 2px;
+  border-color: aliceblue;
+  color: #000000;
+  cursor: pointer;
+}
