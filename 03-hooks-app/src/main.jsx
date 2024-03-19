@@ -1,4 +1,4 @@
-//import React from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom/client'
 //import { HookApp } from './HookApp';
 //import { CounterApp } from './01-useState/CounterApp';
@@ -10,15 +10,19 @@ import ReactDOM from 'react-dom/client'
 //import { MemorizeReactMethod } from './05-memos/MemoReactMethod';
 //import { MemoHook } from './05-memos/MemoHook';
 //import { CallbackHook } from './05-memos/CallbackHook';
-import { Padre } from './06-tarea-memo/Padre';
+//import { Padre } from './06-tarea-memo/Padre';
+//import './07-UseReducer/intro-reducer'
+import { TodoApp } from './07-UseReducer/TodoApp';
 
 import './index.css';
 
 
 
 
+
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
-    <Padre />
+    <TodoApp />
   // </React.StrictMode>,
 )
