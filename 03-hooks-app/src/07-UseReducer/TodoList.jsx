@@ -1,20 +1,27 @@
 import PropTypes from 'prop-types'
 import { TodoItem } from './TodoItem'
 
-export const TodoList = ({ todos = []}) => {
+export const TodoList = ({ todos = [], onDeleteTodo, onToggleTodo}) => {
   return (
-    <div>
+    <>
       <ul className="list-group">
           {
             todos.map( todo => (
-              <TodoItem key={todo.id} todo={todo}/>
+              <TodoItem 
+              key={todo.id} 
+              todo={todo} 
+              onDeleteTodo={ onDeleteTodo } 
+              onToggleTodo={ onToggleTodo }
+              />
             ))
           } 
         </ul>
-    </div>
+    </>
   )
 }
 
 TodoList.propTypes = {
-  todos: PropTypes.array
+  todos: PropTypes.array,
+  onDeleteTodo: PropTypes.func,
+  onToggleTodo: PropTypes.func
 }

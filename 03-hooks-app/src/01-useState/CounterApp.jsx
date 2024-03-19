@@ -13,7 +13,7 @@ export const CounterApp = () => {
   return (
     <>
 
-      {/* Here we're showing th eproperties of the state */}
+      {/* Here we're showing the properties of the state */}
       <h1>Counter: {counter1} </h1> 
       <h1>Counter: {counter2} </h1>
       <h1>Counter: {counter3} </h1>
