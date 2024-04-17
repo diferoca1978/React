@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom"
-import { HeroDetail } from "../pages/Marvel/HeroDetail"
+
 
 export const HeroCard = ({
   id,
@@ -8,12 +8,12 @@ export const HeroCard = ({
 
 }) => {
 
-  const imgUrl = `../../../public/heroes/${id}.jpg`
+  const imgUrl = `../../../heroes/${id}.jpg`
   
   return (
     <>
       {/* CARD */}
-      <div className="rounded-xl shadow-lg">
+      <div className="rounded-xl shadow-lg animate-fade animate-once animate-duration-[1300ms] animate-delay-[600ms] animate-ease-in animate-normal">
         <div className="p-3 flex flex-col">
           <div className="rounded-xl overflow-hidden mb-2">
             <img className="h-60 w-full" src={imgUrl} alt={superhero} />

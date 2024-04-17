@@ -1,13 +1,17 @@
 import { NavLink } from "react-router-dom"
-import { faBars, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faCircleXmark} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { Search } from "../../../heroes/pages/Search/Search";
 
 
 const HeroesPages = () => {
   return (
     <>
-      
+        <div >
+          <Search />
+        </div>
+
         <div>
         <NavLink
           to='/marvel'
@@ -25,7 +29,6 @@ const HeroesPages = () => {
           Dc
         </NavLink>
         </div>
-      
     </>
   ) 
 }
@@ -63,7 +66,7 @@ export const Nav = () => {
   return(
     <>
       <nav >
-        <div className="hidden justify-end p-2 border-b border-slate-500 sm:flex">
+        <div className="hidden justify-end space-x-2 p-2 border-b border-slate-500 sm:flex">
           <HeroesPages />
         </div>
 
