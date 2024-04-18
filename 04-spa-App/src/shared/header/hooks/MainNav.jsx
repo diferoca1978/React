@@ -2,20 +2,25 @@ import { NavLink } from "react-router-dom"
 import { faBars, faCircleXmark} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { Search } from "../../../heroes/pages/Search/Search";
+
 
 
 const HeroesPages = () => {
   return (
     <>
-        <div >
-          <Search />
+        <div>
+        <NavLink
+          to='/search'
+          className={({isActive}) => `${isActive ? 'text-sky-500' : ''}font-primary mr-3`}
+        >
+          Search
+        </NavLink>
         </div>
 
         <div>
         <NavLink
           to='/marvel'
-          className={({isActive}) => `${isActive ? 'text-sky-500' : ''} mr-3`}
+          className={({isActive}) => `${isActive ? 'text-sky-500' : ''}font-primary mr-3`}
         >
           Marvel
         </NavLink>
@@ -24,7 +29,7 @@ const HeroesPages = () => {
         <div>
         <NavLink
           to='/dc'
-          className={({isActive}) => `${isActive ? 'text-sky-500' : ''}`}
+          className={({isActive}) => `${isActive ? 'text-sky-500' : ''}font-primary`}
         >
           Dc
         </NavLink>
@@ -39,7 +44,7 @@ const UserPages = () => {
       <div>
         <NavLink
         to='/login'
-        className={({isActive}) => `${isActive ? 'text-sky-500': ''} mr-3`}
+        className={({isActive}) => `${isActive ? 'text-sky-500': ''} font-primary mr-3`}
         >
           Login
         </NavLink>
@@ -48,7 +53,7 @@ const UserPages = () => {
       <div>
         <NavLink
         to='/register'
-        className={({isActive}) => `${isActive ? 'text-sky-500': ''}`}
+        className={({isActive}) => `${isActive ? 'text-sky-500': ''} font-primary`}
         >
          Sing up 
         </NavLink>
@@ -66,7 +71,7 @@ export const Nav = () => {
   return(
     <>
       <nav >
-        <div className="hidden justify-end space-x-2 p-2 border-b border-slate-500 sm:flex">
+        <div className="hidden justify-end items-center space-x-2 p-2 border-b border-slate-500 sm:flex">
           <HeroesPages />
         </div>
 

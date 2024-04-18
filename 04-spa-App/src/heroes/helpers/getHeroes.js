@@ -6,6 +6,7 @@ export const GetHeroes = (publisher) => {
   const { heroes } = useLoaderData()
 
   const validPublishers = ['Marvel Comics', 'DC Comics']
+  
   if(!validPublishers.includes(publisher)) {
     throw Error(`${publisher} it's not valid publisher`)
   }

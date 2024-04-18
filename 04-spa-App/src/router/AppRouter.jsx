@@ -4,9 +4,10 @@ import { ErrorPage } from "../shared";
 import { MarvelPage, DcPage, Home } from "../heroes/pages";
 import { AuthLayout } from "../layout/AuthLayout";
 import { Login, SingUp } from "../auth/pages";
-import { Loader as marvelLoader } from "../heroes/hooks/UseHeoresLoader";
+import { Loader, Loader as marvelLoader } from "../heroes/hooks/UseHeoresLoader";
 import { Loader as dcLoader } from "../heroes/hooks/UseHeoresLoader";
 import { HeroDetail } from "../heroes/pages/Marvel/HeroDetail";
+import { Search } from "../heroes/pages/Search";
 
 
 
@@ -18,8 +19,10 @@ export const router = createBrowserRouter(
       path="/"
       element={<MainLayout />}
       errorElement={<ErrorPage />}
+      loader={Loader}
     >
       <Route index element={<Home />} />
+      <Route path="search" element={<Search />} loader={Loader}/>
         <Route path="marvel">
           <Route element={<MarvelPage />} index loader={marvelLoader} />
           <Route path=":id" element={<HeroDetail />} loader={marvelLoader}/>

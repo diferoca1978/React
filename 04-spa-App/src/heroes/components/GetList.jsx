@@ -5,7 +5,7 @@ import { HeroCard } from "./HeroCard"
 
 export const GetList = ({publisher}) => {
 
-  const heroes = useMemo(() => GetHeroes(publisher), [publisher]) 
+  const heroes = GetHeroes(publisher); 
 
   return (
     <>

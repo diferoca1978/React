@@ -8,7 +8,7 @@ export const HeroDetail = () => {
 
   const {id} = useParams();
   
-  const hero = useMemo(() => GetHeroById( id ), [id]) ;
+  const hero = GetHeroById( id );
 
   if(!hero) {
     return <Navigate to="/marvel" />
@@ -30,14 +30,14 @@ export const HeroDetail = () => {
           </div>
           
           <div className="col-span-2 flex flex-col">
-            <h3 className="text-lg text-slate-700 font-semibold">{hero.superhero}</h3>
-            <span className="text-slate-500 font-semibold"> {hero.alter_ego} </span>
-            <span className="text-slate-500 font-semibold"> {hero.first_appearance} </span>
-            <span className="text-slate-500 font-semibold"> {hero.characters} </span>
+            <h3 className="text-lg text-slate-700 font-primary font-semibold">{hero.superhero}</h3>
+            <span className="text-slate-500 font-primary font-semibold"> {hero.alter_ego} </span>
+            <span className="text-slate-500 font-primary font-semibold"> {hero.first_appearance} </span>
+            <span className="text-slate-500 font-primary font-semibold"> {hero.characters} </span>
           </div>
         
           <NavLink 
-          className="absolute right-2 bottom-1 animate-bounce animate-thrice animate-duration-[1200ms] animate-delay-[400ms] animate-ease-linear animate-normal animate-fill-forwards" 
+          className="absolute right-2 bottom-1 animate-bounce animate-thrice animate-duration-[1200ms] animate-delay-[400ms] animate-ease-linear animate-normal animate-fill-forwards font-primary" 
           to={-1} 
           >
             Back to....

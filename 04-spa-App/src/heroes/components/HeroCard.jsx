@@ -19,10 +19,10 @@ export const HeroCard = ({
             <img className="h-60 w-full" src={imgUrl} alt={superhero} />
           </div>
           <div>
-            <h3 className="text-lg text-slate-500 font-semibold">{superhero}</h3>
-            <span className="text-slate-400 font-semibold"> {alter_ego} </span>
+            <h3 className="text-lg text-slate-500 font-primary font-semibold">{superhero}</h3>
+            <span className="text-slate-400 font-primary font-semibold"> {alter_ego} </span>
           </div>
-          <NavLink to={`/marvel/${id}`} >
+          <NavLink to={`/marvel/${id}`} className="font-primary">
             More Info....
           </NavLink>
         </div>
