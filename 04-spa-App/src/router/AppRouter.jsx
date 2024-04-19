@@ -10,8 +10,6 @@ import { HeroDetail } from "../heroes/pages/Marvel/HeroDetail";
 import { Search } from "../heroes/pages/Search";
 
 
-
-
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
