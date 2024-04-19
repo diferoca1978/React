@@ -1,14 +1,12 @@
 
+import { RouterProvider} from 'react-router-dom'
+import {router} from './router/AppRouter'
 
 
-
-import { MainLayout } from "./layout/MainLayout"
 
 
 export const HeroesApp = () => {
   return (
-    <>
-        <MainLayout />
-    </>
+      <RouterProvider router = {router} />
   )
 }

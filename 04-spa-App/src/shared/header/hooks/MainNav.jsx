@@ -1,7 +1,8 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { faBars, faCircleXmark} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../auth/context/AuthContext";
 
 
 
@@ -38,31 +39,55 @@ const HeroesPages = () => {
   ) 
 }
 
+
 const UserPages = () => {
+
+  const { user } = useContext( AuthContext );
+  console.log(user);
+
+  const navigate = useNavigate()
+
+  const onLogout = () => {
+    navigate('/login', {
+    replace: true
+    })
+  }
+
   return (
     <>
       <div>
-        <NavLink
-        to='/login'
-        className={({isActive}) => `${isActive ? 'text-sky-500': ''} font-primary mr-3`}
-        >
-          Login
-        </NavLink>
-      </div>
+          <NavLink
+          to='/login'
+          className={({isActive}) => `${isActive ? 'text-sky-500': ''} font-primary mr-3`}
+          >
+            Login
+          </NavLink>
+        </div>
 
-      <div>
-        <NavLink
-        to='/register'
-        className={({isActive}) => `${isActive ? 'text-sky-500': ''} font-primary`}
-        >
-         Sing up 
-        </NavLink>
+        <div>
+          <NavLink
+          to='/register'
+          className={({isActive}) => `${isActive ? 'text-sky-500': ''} font-primary mr-3`}
+          >
+          Sing up 
+          </NavLink>
+        </div>
+
+        <div className="mr-3">
+          Not implemented
+        </div>
+
+        <div>
+          <button onClick={onLogout} className="text-base italic">
+            LogOut
+          </button>
       </div>
     </>
   ) 
 }
 
 export const Nav = () => {
+
   const [isToggle,setIsToggle] = useState(false)
 
   const toggleNav = () => {
@@ -76,7 +101,7 @@ export const Nav = () => {
         </div>
 
         <div className="hidden justify-end p-2 sm:flex">
-          <UserPages />
+           <UserPages /> 
         </div>
 
         <div className="relative">
@@ -92,8 +117,6 @@ export const Nav = () => {
           )}
         </div> 
       </nav>
-     
-      
     </>
   ) 
 }
