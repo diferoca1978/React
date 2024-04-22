@@ -42,12 +42,14 @@ const HeroesPages = () => {
 
 const UserPages = () => {
 
-  const { user } = useContext( AuthContext );
+  const { user, logout } = useContext( AuthContext );
   console.log(user);
+  
 
   const navigate = useNavigate()
 
   const onLogout = () => {
+    logout();
     navigate('/login', {
     replace: true
     })
@@ -73,8 +75,8 @@ const UserPages = () => {
           </NavLink>
         </div>
 
-        <div className="mr-3">
-          Not implemented
+        <div className="italic text-inherit mr-3">
+          {user?.name}
         </div>
 
         <div>

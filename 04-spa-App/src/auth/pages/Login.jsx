@@ -11,7 +11,7 @@ export const Login = () => {
   
   const onLogin = () => {
 
-    login('Diego Rodriguez')
+    login('Diego Rodriguez castro')
     
     navigate ('/', {
       replace: true

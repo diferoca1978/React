@@ -8,11 +8,13 @@ import { Loader, Loader as marvelLoader } from "../heroes/hooks/UseHeoresLoader"
 import { Loader as dcLoader } from "../heroes/hooks/UseHeoresLoader";
 import { HeroDetail } from "../heroes/pages/Marvel/HeroDetail";
 import { Search } from "../heroes/pages/Search";
+import { ProtectedRoutes } from "./ProtectedRoutes";
 
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
+    
     <Route
       path="/"
       element={<MainLayout />}
@@ -20,18 +22,20 @@ export const router = createBrowserRouter(
       loader={Loader}
     >
       <Route index element={<Home />} />
-      <Route path="search" element={<Search />} loader={Loader}/>
+
+      <Route element ={ <ProtectedRoutes /> }>
+        <Route path="search" element={<Search />} loader={Loader}/>
+      </Route>
+
         <Route path="marvel">
-          <Route element={<MarvelPage />} index loader={marvelLoader} />
-          <Route path=":id" element={<HeroDetail />} loader={marvelLoader}/>
+            <Route element={<MarvelPage />} index loader={marvelLoader} />
+            <Route path=":id" element={<HeroDetail />} loader={marvelLoader}/>
         </Route>
-                    
-        <Route 
-        path="dc" 
-        element={<DcPage />}
-        loader={dcLoader}
-        />
+        <Route path="dc" element={<DcPage />} loader={dcLoader} />
     </Route>
+
+   
+
 
     <Route
       element={ <AuthLayout /> }
