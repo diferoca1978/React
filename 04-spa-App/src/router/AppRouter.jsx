@@ -25,13 +25,13 @@ export const router = createBrowserRouter(
 
       <Route element ={ <ProtectedRoutes /> }>
         <Route path="search" element={<Search />} loader={Loader}/>
-      </Route>
-
         <Route path="marvel">
             <Route element={<MarvelPage />} index loader={marvelLoader} />
             <Route path=":id" element={<HeroDetail />} loader={marvelLoader}/>
         </Route>
         <Route path="dc" element={<DcPage />} loader={dcLoader} />
+      </Route>
+
     </Route>
 
    
