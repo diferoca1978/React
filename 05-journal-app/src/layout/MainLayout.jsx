@@ -1,23 +1,30 @@
-import { Outlet } from "react-router-dom"
-import { NavBar } from "../shared/components/NavBar"
-import { Footer } from "../shared/components/Footer"
+import { Box, Toolbar } from "@mui/material"
+import { NavBar, SideBar } from "../shared/components";
 
+const drawerWidth = 240;
 
-export const MainLayout = () => {
+export const MainLayout = ({children}) => {
   return (
-    <>
-      <header>
-        <NavBar />
-      </header>
+    <Box sx={{display: 'flex'}}>
 
-      <main>
-        <Outlet />
-      </main>
-      
-      <footer>
-        <Footer/>
-      </footer>
-    </>
+      <NavBar drawerWidth={drawerWidth} />
+
+      <SideBar drawerWidth={drawerWidth} />
+
+      <Box 
+        component='main'
+        sx={{flexGrow: 1, p:3}}
+      >
+
+        <Toolbar />
+
+        {children}
+
+      </Box>
+
+      {/* Footer */}
+
+    </Box>
 
   )
 }

@@ -1,24 +1,14 @@
 import { Link as RouterLink } from "react-router-dom";
 import { Google, LoginRounded } from "@mui/icons-material"
 import { Button, Grid, Link, TextField, Typography } from "@mui/material"
+import { AuthLayout } from "../../layout";
+
 
 
 export const LoginPage = () => {
   return (
-    <Grid 
-    container 
-    spacing={0}
-    direction='column'
-    alignItems='center'
-    justifyContent='center'
-    sx={{minHeight: '100vh', backgroundColor: 'primary.main', padding: 4}}
-    >
 
-    <Grid item
-    className="box-shadow"
-    xs= { 3 }
-    sx={{backgroundColor:'white', padding: 3, borderRadius: 2, border: 1, borderColor: 'blues.main'}}>
-      <Typography variant="h5">Login</Typography>
+    <AuthLayout title="Login">
 
       <form>
         <Grid container>
@@ -42,16 +32,16 @@ export const LoginPage = () => {
 
           <Grid container spacing={ 2 } sx={{ mb: 2 }}>
             <Grid item xs={ 12 } sm={ 6 } >
-              <Button variant="contained" sx={{fontSize: 20}}fullWidth>
-                <Typography sx={{mr:1}}>Login</Typography>
-                <LoginRounded/>
+              <Button variant="contained" fullWidth>
+                <Typography sx={{mr:1, fontSize: 18}}>Login</Typography>
+                <LoginRounded sx={{ fontSize: 18}}/>
               </Button>
             </Grid>
             
             <Grid item xs={ 12 } sm={ 6 } >
               <Button variant="contained" fullWidth>
-                <Google sx={{ fontSize: 20}}/>
-                <Typography sx={{ml: 1}}>Google</Typography>
+                <Google sx={{ fontSize: 18}}/>
+                <Typography sx={{ml: 1, fontSize: 18}}>Google</Typography>
               </Button>
             </Grid>
           </Grid>
@@ -60,18 +50,18 @@ export const LoginPage = () => {
             <Link 
             component={ RouterLink } 
             color='inherit' 
-            to='/' 
-            sx={{textDecoration: 'none', cursor:'pointer'}}
+            to='/auth/register' 
+            sx={{
+              fontSize: 18,
+              textDecoration: 'none',
+              cursor:'pointer',
+              '&:hover': {color: 'blues.main'}  
+            }}
             >Create an Account</Link>
           </Grid>
-
         </Grid>
       </form>
+    </AuthLayout>
 
-
-    </Grid>
-
-
-    </Grid>
   )
 }
