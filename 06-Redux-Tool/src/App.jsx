@@ -22,6 +22,7 @@ function App() {
       </div>
       <h1>Counter by ReduxToolKit</h1>
       <h2>count is {counter}</h2>
+      <div>
       <div className="card">
         <button onClick={() => dispatch(increment())}>
           increment
@@ -36,6 +37,7 @@ function App() {
         <button onClick={() => dispatch(incrementByTwo(2))}>
           Increment by 2
         </button>
+      </div>
       </div>
     </>
   )
