@@ -15,15 +15,15 @@ export const AuthSlice = createSlice({
       login: (state, action) => {
 
       },
-      logOut: (sytate,payload) => {
+      logOut: (state,payload) => {
         
       },
-      ChekingCredentias: (state) => {
-         
+      chekingCredentials: (state) => {
+         state.status = 'cheking'
       }
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { login, logOut, ChekingCredentias } = AuthSlice.actions;
+export const { login, logOut, chekingCredentials } = AuthSlice.actions;
