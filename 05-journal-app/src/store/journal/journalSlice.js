@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loadNotes } from '../../journal/helpers';
+
 
 export const journalSlice = createSlice({
     name: 'journal',
@@ -35,11 +35,25 @@ export const journalSlice = createSlice({
         
         setActiveNote: (state, action) => {
             state.active = action.payload;
+            state.messageSaved = '';
         },
 
+        setSaving: (state) => {
+             state.isSaved = true;
+             state.messageSaved = '';
+        },
 
-        updateNoteByUid: (state,action) => {
-             
+        updatedNote: (state,action) => {
+            state.isSaved = false;
+            state.notes = state.notes.map(note => {
+                if (note.id === action.payload.id) {
+                    return action.payload;
+                }
+
+                return note
+            });
+
+            state.messageSaved = `${ action.payload.title},`            
         },
 
         deleteNote: (state) => {
@@ -55,7 +69,7 @@ createNewNote,
 setNotes,
 setActiveNote,
 setSaving,
-updateNote,
+updatedNote,
 deleteNote,
 savingNewNote
 } = journalSlice.actions;  

@@ -37,6 +37,7 @@ export const SideBar = ({ drawerWidth = 240 }) => {
           />
           {displayName !== null ? <Typography>{displayName}</Typography> : ""}
         </Toolbar>
+
         <Divider />
 
         <List>
