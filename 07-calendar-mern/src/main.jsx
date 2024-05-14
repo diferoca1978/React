@@ -1,14 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { NextUIProvider } from "@nextui-org/react";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 
-import { CalendarApp } from "./CalendarApp";
-import "./styles.css";
+import { CalendarApp } from './CalendarApp.jsx'
+import './index.css'
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <NextUIProvider>
-      <CalendarApp />
-    </NextUIProvider>
-  </React.StrictMode>
-);
+    <CalendarApp />
+  </React.StrictMode>,
+)
