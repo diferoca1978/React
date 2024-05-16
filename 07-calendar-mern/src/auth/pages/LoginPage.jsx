@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { Button, Image, Input } from "@nextui-org/react"
-import { AuthLayout } from "../../layout/AuthLayout"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom"
+import { FormLayout } from "../../layout"
 
 
 
@@ -14,7 +14,7 @@ export const LoginPage = () => {
   const togglepasword = () => setShowPassword(!showPassword);
 
   return (
-    <AuthLayout title="Sing In">
+    <FormLayout title="Sing In">
       <form>
         <div className=" p-3 xs:mx-auto sm:mx-auto sm:w-full">
           <div className="mb-4 text-blueDark-800">
@@ -79,6 +79,6 @@ export const LoginPage = () => {
           >Do not have an account? Sing Up !!</Link>
         </div>
       </form>
-    </AuthLayout>
+    </FormLayout>
   )
 }

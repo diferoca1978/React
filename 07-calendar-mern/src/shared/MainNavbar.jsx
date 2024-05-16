@@ -11,11 +11,11 @@ export const MainNavbar = () => {
   const isAuthenticated = false
 
   return (
-    <Navbar isBordered className="bg-blueDark-600">
+    <Navbar isBordered className="bg-blueDark-800">
       <NavbarBrand className="justify-start"  >
-        <FontAwesomeIcon className="text-blueDark-900 h-10" icon={faPiedPiperAlt} />
+        <FontAwesomeIcon className="text-yellow-500 h-10" icon={faPiedPiperAlt} />
         <div className="text-xl font-extrabold">
-          <p className="bg-clip-text text-transparent bg-gradient-to-r from-blueDark-900 to-blueLight-200 ">Calendar</p>
+          <p className="bg-clip-text text-transparent bg-gradient-to-r  from-yellow-600 to-orange-200 ">Calendar</p>
         </div>
       </NavbarBrand>
 
@@ -24,8 +24,8 @@ export const MainNavbar = () => {
           <NavbarContent justify="end">
             <NavbarItem>
               <Link to='/auth/login' className="flex items-center sm:mr-3 ">
-                <p className="text-blueDark-800 font-semibold mr-2">Sing In</p>
-                <FontAwesomeIcon className="text-blueDark-800" icon={faUserAstronaut} />
+                <p className="text-yellow-500 font-semibold mr-2">Sing In</p>
+                <FontAwesomeIcon className="text-yellow-600" icon={faUserAstronaut} />
               </Link>
             </NavbarItem>
           </NavbarContent>

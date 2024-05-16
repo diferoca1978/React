@@ -1,4 +1,4 @@
-import { createBrowserRouter,createRoutesFromElements, Route } from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
 import { MainLayout } from "../layout/MainLayout";
 import { ErrorPage } from "../shared";
 import { MarvelPage, DcPage, Home } from "../heroes/pages";
@@ -14,40 +14,37 @@ import { ProtectedRoutes } from "./ProtectedRoutes";
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-    
-    <Route
-      path="/"
-      element={<MainLayout />}
-      errorElement={<ErrorPage />}
-      loader={Loader}
-    >
-      <Route index element={<Home />} />
 
-      <Route element ={ <ProtectedRoutes /> }>
-        <Route path="search" element={<Search />} loader={Loader}/>
-        <Route path="marvel">
+      <Route
+        path="/"
+        element={<MainLayout />}
+        errorElement={<ErrorPage />}
+        loader={Loader}
+      >
+        <Route index element={<Home />} />
+
+        <Route element={<ProtectedRoutes />}>
+          <Route path="search" element={<Search />} loader={Loader} />
+          <Route path="marvel">
             <Route element={<MarvelPage />} index loader={marvelLoader} />
-            <Route path=":id" element={<HeroDetail />} loader={marvelLoader}/>
+            <Route path=":id" element={<HeroDetail />} loader={marvelLoader} />
+          </Route>
+          <Route path="dc" element={<DcPage />} loader={dcLoader} />
         </Route>
-        <Route path="dc" element={<DcPage />} loader={dcLoader} />
+
       </Route>
 
-    </Route>
-
-   
-
-
-    <Route
-      element={ <AuthLayout /> }
-      errorElement={ <ErrorPage />}
-    >
+      <Route
+        element={<AuthLayout />}
+        errorElement={<ErrorPage />}
+      >
         <Route path="login" element={<Login />} />
-        <Route path="register" element= {<SingUp />} />
-    </Route>
+        <Route path="register" element={<SingUp />} />
+      </Route>
     </>
 
 
-    
+
   )
 )
 
