@@ -6,7 +6,7 @@ import {
 import { MainLayout } from "../layout/MainLayout";
 import { ErrorPage } from "../shared";
 import { CalendarPage } from "../calendar";
-import { LoginPage, RegisterPage } from "../auth";
+import { LoginPage, ProfilePage, RegisterPage } from "../auth";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,6 +15,7 @@ export const router = createBrowserRouter(
       <Route path="auth">
         <Route path="login" element={<LoginPage />} />
         <Route path="register" element={<RegisterPage />} />
+        <Route path="profile" element={<ProfilePage />} />
       </Route>
     </Route>
   )

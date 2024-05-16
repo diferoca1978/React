@@ -63,6 +63,7 @@ export const LoginPage = () => {
                 width={30}
                 alt="google"
                 src="../../../images/icons8-logo-de-google-48.png" />
+
               <span className="text-sm font-bold text-blueDark-800">Sing In with Google</span>
             </Button>
           </div>
