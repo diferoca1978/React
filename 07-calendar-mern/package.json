@@ -16,10 +16,13 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@nextui-org/react": "^2.3.6",
+    "date-fns": "^3.6.0",
     "framer-motion": "^11.1.9",
     "react": "^18.2.0",
+    "react-big-calendar": "^1.12.2",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.4",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.23.0"
   },
   "devDependencies": {
