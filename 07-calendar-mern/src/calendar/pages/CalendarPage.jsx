@@ -6,10 +6,7 @@ import { addHours } from 'date-fns';
 import { localizer } from '../../helpers';
 import { CalendarBoxEvent } from '../components/CalendarBoxEvent';
 import { ModalCalendar } from '../components/ModalCalendar';
-
-
-
-
+import { useUiStore } from '../../hooks/useUiStore';
 
 const events = [ {
   title: ' Boss Happy birthday',
@@ -23,22 +20,27 @@ const events = [ {
   }
 } ]
 
-const onDoubleClick = (event) => {
-  console.log({ doubleClick: event })
-}
 
-const onSelect = (event) => {
-  console.log({ click: event })
-}
-
-const onViewChange = (event) => {
-  localStorage.setItem('lastView', event);
-
-}
 
 export const CalendarPage = () => {
 
+  const { openDateModal } = useUiStore()
+
   const [ lastview, setLastview ] = useState(localStorage.getItem('lastView') || 'Month')
+
+  const onDoubleClick = (event) => {
+    // console.log({ doubleClick: event });
+    openDateModal();
+  }
+
+  const onSelect = (event) => {
+    console.log({ click: event })
+  }
+
+  const onViewChange = (event) => {
+    localStorage.setItem('lastView', event);
+
+  }
 
   return (
     <>

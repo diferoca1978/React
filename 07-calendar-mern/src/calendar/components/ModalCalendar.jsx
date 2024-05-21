@@ -1,11 +1,21 @@
-import { useState } from 'react';
-import { Button, DatePicker, Divider } from '@nextui-org/react';
+import { useMemo, useState } from 'react';
 import Modal from 'react-modal';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Swal from 'sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css'
+
+import { Button, Input, Textarea } from '@nextui-org/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleXmark, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
+import { differenceInSeconds } from 'date-fns';
+import { useUiStore } from '../../hooks/useUiStore';
+
+
 
 const customStyles = {
   content: {
+    position: 'absolute',
     top: '50%',
     left: '50%',
     right: 'auto',
@@ -19,43 +29,143 @@ Modal.setAppElement('#root');
 
 export const ModalCalendar = () => {
 
-  const [ isOpen, setIsOpen ] = useState(true)
+  const { isDateModalOpen, closeDateModal } = useUiStore()
+  const [ formSubmited, setFormSubmited ] = useState(false)
+  const [ formValues, setFormValues ] = useState({
+    title: '',
+    startDate: new Date(),
+    endDate: new Date(),
+    description: ''
+  })
 
-  const onCloseModal = () => {
-    setIsOpen(false)
+  const isInvalidTitle = useMemo(() => {
+    if (!formSubmited) return '';
+
+    return (formValues.title.length > 0)
+      ? ''
+      : 'true'
+  }, [ formValues.title, formSubmited ])
+
+  const onInputChange = ({ target }) => {
+    setFormValues({
+      ...formValues,
+      [ target.name ]: target.value
+    })
   }
 
+  const onDateChange = (event, changing) => {
+    setFormValues({
+      ...formValues,
+      [ changing ]: event
+    })
+  }
+
+  const onCloseModal = () => {
+    closeDateModal();
+  }
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    setFormSubmited(true)
+
+    const difference = differenceInSeconds(formValues.endDate, formValues.startDate)
+
+    if (isNaN(difference) || difference <= 0) {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Wrong dates',
+        icon: 'error',
+        confirmButtonText: 'Return',
+        confirmButtonColor: '#d62828'
+
+      })
+      return;
+    }
+
+    if (formValues.title.length < 0) return;
+
+    console.log(formValues);
+  }
 
   return (
     <>
       <Modal
-        isOpen={isOpen}
+        isOpen={isDateModalOpen}
         style={customStyles}
+
         className='modal'
         overlayClassName='modal-fondo'
         closeTimeoutMS={200}
+
       >
 
         <div className='flex flex-col p-2 gap-3'>
           <div className='flex justify-between items-center'>
-            <h1>Nuevo evento</h1>
+            <h1 className='text-xl font-bold'>Nuevo evento</h1>
             <i
-              onClick={onCloseModal}>
+              className='cursor-pointer'
+              onClick={onCloseModal}
+            >
               <FontAwesomeIcon icon={faCircleXmark} />
             </i>
           </div>
 
           <hr className='border-blueDark-800 my-3'></hr>
 
-          <form className='flex flex-col gap-3 w-80'>
-            <div>
-              <DatePicker color='primary' label='Start date' variant='underlined' />
+          <form onSubmit={onSubmit} className='flex flex-col gap-3 w-80'>
+            <div className='flex flex-col gap-2'>
+              <label>Start date/time </label>
+              <DatePicker
+                dateFormat='dd/MM/yyyy h:mm aa'
+                showTimeSelect
+                className='border-b-2 border-white-300 w-full outline-none'
+                onChange={(event) => onDateChange(event, 'startDate')}
+                selected={formValues.startDate}
+              />
+            </div>
+            <div className='flex flex-col gap-2'>
+              <label>End date/time </label>
+              <DatePicker
+                showTimeSelect
+                className='border-b-2 border-white-300 w-full outline-none'
+                minDate={formValues.startDate}
+                onChange={(event) => onDateChange(event, 'endDate')}
+                selected={formValues.endDate}
+                dateFormat='dd/MM/yyyy h:mm aa'
+              />
+            </div>
+            <div className='flex flex-col gap-2'>
+              <label>Title</label>
+              <Input
+                variant="underlined"
+                placeholder='Event title'
+                name='title'
+                value={formValues.title}
+                onChange={onInputChange}
+                isInvalid={isInvalidTitle}
+                color={isInvalidTitle ? 'danger' : ''}
+                errorMessage={isInvalidTitle && "Please enter a title"}
+              />
             </div>
             <div>
-              <DatePicker label='End date' variant='underlined' />
+              <Textarea
+                label='Description'
+                placeholder='Enter a description'
+                color='warning'
+                name='description'
+                value={formValues.description}
+                onChange={onInputChange}
+              />
             </div>
-
-
+            <div>
+              <Button
+                className='mb-1'
+                type='submit'
+                color='primary'
+              >
+                Save <FontAwesomeIcon icon={faFloppyDisk} />
+              </Button>
+            </div>
           </form>
         </div>
 
