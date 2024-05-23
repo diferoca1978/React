@@ -2,9 +2,8 @@
   "name": "08-calendar-mern-backend",
   "version": "1.0.0",
   "main": "index.js",
-  "node": "module",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon src/index.js",
     "start": "node index.js"
   },
   "keywords": [],
@@ -12,6 +11,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.19.2"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-validator": "^7.1.0",
+    "mongoose": "^8.4.0",
+    "nodemon": "^3.1.0"
   }
 }
