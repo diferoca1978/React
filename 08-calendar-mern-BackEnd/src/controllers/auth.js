@@ -70,7 +70,6 @@ const loginUser = async (req, res = response) => {
     }
 
     const validPass = bcrypt.compareSync(password, userToLogin.password);
-    console.log(validPass);
 
     if (!validPass) {
       return res.status(400).json({
@@ -83,11 +82,16 @@ const loginUser = async (req, res = response) => {
       });
     }
 
+    // GenerateJWT
+
+    const token = await generateJWT(userToLogin.id, userToLogin.name);
+
     res.json({
       ok: true,
       user: {
         userId: userToLogin.id,
         name: userToLogin.name,
+        token,
       },
     });
   } catch (error) {
@@ -99,9 +103,16 @@ const loginUser = async (req, res = response) => {
   }
 };
 
-const renew = (req, res) => {
+const renew = async (req, res) => {
+  //* Here we're getting the values that we want, these come in the request.
+  const { uid, name } = req;
+
+  //* Here we generate a new token which has already been validated.
+  const token = await generateJWT(uid, name);
+
   res.json({
-    message: 'Hellow from renew a JWT 🙊',
+    ok: true,
+    token,
   });
 };
 
