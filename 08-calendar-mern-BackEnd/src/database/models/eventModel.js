@@ -27,7 +27,7 @@ const eventSchema = new Schema({
   },
 });
 
-//* IF we need to change the way that serialize the model, we can change this accesing the object and rewrite the properties that need to change. Like this:
+//* IF we need to change the way that serialize the model, we can change this by accesing the object and rewrite the properties that need to change. Like this:
 
 eventSchema.method('toJSON', function () {
   const { _id, __v, ...object } = this.toObject();

@@ -52,13 +52,13 @@ const updateEvent = async (req, res) => {
     const event = await Event.findById(eventId);
 
     if (!event) {
-      res.status(404).json({
+      return res.status(404).json({
         ok: true,
         msg: 'Event not found ❌',
       });
     }
 
-    if (event.user !== req.uid) {
+    if (event.user.toString() !== req.uid) {
       return res.status(401).json({
         ok: false,
         msg: 'Unauthorized to make changes 🙊',
@@ -67,10 +67,12 @@ const updateEvent = async (req, res) => {
 
     const newEvent = {
       ...req.body,
-      user: uid,
+      user: req.uid,
     };
 
-    const updatedEvent = await Event.findByIdAndUpdate(eventId, newEvent);
+    const updatedEvent = await Event.findByIdAndUpdate(eventId, newEvent, {
+      new: true,
+    });
 
     res.json({
       ok: true,
@@ -85,11 +87,45 @@ const updateEvent = async (req, res) => {
   }
 };
 // Delete an event
-const deleteEvent = (req, res) => {
-  return res.json({
-    ok: true,
-    msg: 'Hello from delete event',
-  });
+const deleteEvent = async (req, res) => {
+  const eventId = req.params.id;
+
+  try {
+    const event = await Event.findById(eventId);
+
+    if (!event) {
+      return res.status(404).json({
+        ok: true,
+        msg: 'Event not found ❌',
+      });
+    }
+
+    if (event.user.toString() !== req.uid) {
+      return res.status(401).json({
+        ok: false,
+        msg: 'Unauthorized to make changes 🙊',
+      });
+    }
+
+    const deletedEvent = await Event.findByIdAndDelete(eventId);
+
+    if (deleteEvent) {
+      return res.json({
+        ok: true,
+        eventDeleted: deletedEvent,
+      });
+    }
+    return res.json({
+      ok: false,
+      msg: 'An error has occurred in the delete process',
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      ok: false,
+      msg: 'Contact with customer service',
+    });
+  }
 };
 
 module.exports = {
