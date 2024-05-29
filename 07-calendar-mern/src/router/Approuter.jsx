@@ -2,13 +2,12 @@ import {
   Route,
   createBrowserRouter,
   createRoutesFromElements,
-} from "react-router-dom";
+} from 'react-router-dom';
 
-import { ErrorPage } from "../shared";
-import { CalendarPage } from "../calendar";
-import { LoginPage, ProfilePage, RegisterPage } from "../auth";
-import { AuthLayout, MainLayout } from "../layout";
-
+import { ErrorPage } from '../shared';
+import { CalendarPage } from '../calendar';
+import { LoginPage, ProfilePage, RegisterPage } from '../auth';
+import { AuthLayout, MainLayout } from '../layout';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,7 +21,6 @@ export const router = createBrowserRouter(
         <Route path="register" element={<RegisterPage />} />
         <Route path="profile" element={<ProfilePage />} />
       </Route>
-
     </>
   )
 );

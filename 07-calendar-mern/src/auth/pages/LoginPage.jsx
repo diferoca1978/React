@@ -1,31 +1,33 @@
-import { useState } from "react"
-import { Button, Image, Input } from "@nextui-org/react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons"
-import { Link } from "react-router-dom"
-import { FormLayout } from "../../layout"
-
-
+import { useState } from 'react';
+import { Button, Image, Input } from '@nextui-org/react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import { FormLayout } from '../../layout';
+import { useForm } from 'react-hook-form';
 
 export const LoginPage = () => {
+  const { register, handleSubmit } = useForm();
 
-  const [ showPassword, setShowPassword ] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const togglepasword = () => setShowPassword(!showPassword);
 
   return (
     <FormLayout title="Sing In">
-      <form>
+      <form onSubmit={handleSubmit((data) => console.log(data))}>
         <div className=" p-3 xs:mx-auto sm:mx-auto sm:w-full">
           <div className="mb-4 text-blueDark-800">
             <Input
-              label='Email'
+              {...register('email')}
+              label="Email"
               type="email"
               variant="underlined"
             />
 
             <Input
-              label='Password'
+              {...register('password')}
+              label="Password"
               variant="underlined"
               // placeholder="Insert Your Password"
               endContent={
@@ -34,10 +36,17 @@ export const LoginPage = () => {
                   onClick={togglepasword}
                   type="button"
                 >
-                  {showPassword
-                    ? (<FontAwesomeIcon className="text-blueDark-600" icon={faEye} />)
-                    : (<FontAwesomeIcon className="text-blueDark-600" icon={faEyeSlash} />)
-                  }
+                  {showPassword ? (
+                    <FontAwesomeIcon
+                      className="text-blueDark-600"
+                      icon={faEye}
+                    />
+                  ) : (
+                    <FontAwesomeIcon
+                      className="text-blueDark-600"
+                      icon={faEyeSlash}
+                    />
+                  )}
                 </button>
               }
               type={showPassword ? 'text' : 'Password'}
@@ -45,8 +54,9 @@ export const LoginPage = () => {
           </div>
 
           <div className="flex flex-col">
-            <Button className="bg-white-100 text-blueDark-800 rounded-lg sm:max-w-full"
-              type="button"
+            <Button
+              className="bg-white-100 text-blueDark-800 rounded-lg sm:max-w-full"
+              type="submit"
             >
               <span className="font-bold text-sm">Sing In</span>
             </Button>
@@ -62,23 +72,28 @@ export const LoginPage = () => {
                 className="ml-3"
                 width={30}
                 alt="google"
-                src="../../../images/icons8-logo-de-google-48.png" />
+                src="../../../images/icons8-logo-de-google-48.png"
+              />
 
-              <span className="text-sm font-bold text-blueDark-800">Sing In with Google</span>
+              <span className="text-sm font-bold text-blueDark-800">
+                Sing In with Google
+              </span>
             </Button>
           </div>
 
-          <Link className="
+          <Link
+            className="
               text-xs
               text-blueDark-800 
               hover:scale-105 
               transition duration-100
               "
-            to='/auth/register'
-
-          >Do not have an account? Sing Up !!</Link>
+            to="/auth/register"
+          >
+            Do not have an account? Sing Up !!
+          </Link>
         </div>
       </form>
     </FormLayout>
-  )
-}
+  );
+};
