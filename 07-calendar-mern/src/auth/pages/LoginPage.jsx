@@ -5,8 +5,11 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { FormLayout } from '../../layout';
 import { useForm } from 'react-hook-form';
+import { useAuthStore } from '../../hooks';
 
 export const LoginPage = () => {
+  const { startLogin } = useAuthStore();
+
   const { register, handleSubmit } = useForm();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -15,7 +18,7 @@ export const LoginPage = () => {
 
   return (
     <FormLayout title="Sing In">
-      <form onSubmit={handleSubmit((data) => console.log(data))}>
+      <form onSubmit={handleSubmit((data) => startLogin(data))}>
         <div className=" p-3 xs:mx-auto sm:mx-auto sm:w-full">
           <div className="mb-4 text-blueDark-800">
             <Input
