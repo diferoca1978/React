@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Image, Input } from '@nextui-org/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -6,15 +6,41 @@ import { Link } from 'react-router-dom';
 import { FormLayout } from '../../layout';
 import { useForm } from 'react-hook-form';
 import { useAuthStore } from '../../hooks';
+import Swal from 'sweetalert2';
 
 export const LoginPage = () => {
-  const { startLogin } = useAuthStore();
+  const { startLogin, errorMessage } = useAuthStore();
 
   const { register, handleSubmit } = useForm();
 
   const [showPassword, setShowPassword] = useState(false);
 
   const togglepasword = () => setShowPassword(!showPassword);
+
+  useEffect(() => {
+    if (errorMessage !== undefined) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Athentication error',
+        text: errorMessage,
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `,
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `,
+        },
+        showConfirmButton: false,
+      });
+    }
+  }, [errorMessage]);
 
   return (
     <FormLayout title="Sing In">
